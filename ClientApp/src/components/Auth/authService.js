@@ -1,17 +1,14 @@
 
 export class AuthService {
 
-    register(email, password) {
-
-        fetch("https://localhost:44322/register", {
+    register(input) {
+        console.log(input)
+        fetch("https://localhost:5001/Identity/Account/Register", {
             method: "POST",
             mode: "cors",
-            cache: "no-cache",
             credentials: "same-origin",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ email, password })
+            type:"formData",
+            body: JSON.stringify(input)
         })
             .then(data => data.json())
             .then((res) => console.log(res))
@@ -27,4 +24,4 @@ export class AuthService {
 
 const auth = new AuthService();
 
-export default auth ;
+export default auth;

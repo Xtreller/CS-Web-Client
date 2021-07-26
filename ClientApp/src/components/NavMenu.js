@@ -7,7 +7,7 @@ import './NavMenu.css';
 export class NavMenu extends Component {
   static displayName = NavMenu.name;
 
-  constructor (props) {
+  constructor(props) {
     super(props);
 
     this.toggleNavbar = this.toggleNavbar.bind(this);
@@ -16,29 +16,32 @@ export class NavMenu extends Component {
     };
   }
 
-  toggleNavbar () {
+  toggleNavbar() {
     this.setState({
       collapsed: !this.state.collapsed
     });
   }
 
-  render () {
+  render() {
     return (
       <header>
-        <Navbar className="navbar-expand-sm navbar-toggleable-sm ng-white border-bottom box-shadow mb-3" light>
+        <Navbar className="navbar navbar-dark bg-dark navbar-expand-sm navbar-toggleable-sm ng-white border-bottom box-shadow "  >
           <Container>
-            <NavbarBrand tag={Link} to="/">Final_Project</NavbarBrand>
+            <NavbarBrand tag={Link} to="/garages">
+
+              <img className="logo" src="./logo.png" height="100px" alt="" />
+            </NavbarBrand>
             <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
             <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={!this.state.collapsed} navbar>
               <ul className="navbar-nav flex-grow">
                 <NavItem>
-                  <NavLink tag={Link} className="text-dark" to="/">Home</NavLink>
+                  <NavLink tag={Link} to="/">Home</NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink tag={Link} className="text-dark" to="/add-garage">Add Garage</NavLink>
+                  <NavLink tag={Link} to="/add-garage">Add Garage</NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink tag={Link} className="text-dark" to="/garages">Garages</NavLink>
+                  <NavLink tag={Link} to="/garages">Garages</NavLink>
                 </NavItem>
                 <LoginMenu>
                 </LoginMenu>

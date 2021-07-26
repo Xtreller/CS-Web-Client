@@ -11,6 +11,7 @@ import { ApplicationPaths } from './components/api-authorization/ApiAuthorizatio
 
 import './custom.css'
 import Register from './components/Auth/Register';
+import Login from './components/Auth/Login';
 // import env from 'dotenv'
 
 export default class App extends Component {
@@ -26,6 +27,7 @@ export default class App extends Component {
         <Route path='/add-garage' component={AddGarage} />
         <Route path='/garage/:id' component={Details} />
         <Route path='/register' component={Register} />
+        <Route path='/login' component={Login} />
         <Route path={ApplicationPaths.ApiAuthorizationPrefix} component={ApiAuthorizationRoutes} />
       </Layout>
     );
