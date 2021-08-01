@@ -14,15 +14,12 @@ export default function Login() {
   }
   function handleSubmit(event) {
     event.preventDefault();
-    if (!input.password || !input.repeatPassword || !input.email) {
+    if (!input.Password || !input.Email) {
       setMessage("All fields are required");
       console.log(message);
     }
-    if (input.password == input.repeatPassword) {
-      auth.register(input.username, input.password);
-    } else {
-      setMessage("Password and Repeat Password doesn't match!");
-    }
+    console.log(input);
+    auth.login(input);
   }
   return (
     <form onSubmit={handleSubmit}>
@@ -32,7 +29,7 @@ export default function Login() {
         <input
           onChange={handleInputChange}
           type="email"
-          name="email"
+          name="Email"
           className="form-control"
           id="email"
           aria-describedby="emailHelp"
@@ -44,7 +41,7 @@ export default function Login() {
         <input
           onChange={handleInputChange}
           type="password"
-          name="password"
+          name="Password"
           className="form-control"
           id="exampleInputPassword1"
           placeholder="Password"

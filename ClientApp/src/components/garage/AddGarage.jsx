@@ -18,11 +18,12 @@ export default class AddGarage extends Component {
   }
   handleSubmit(event) {
     event.preventDefault();
-    fetch("https://localhost:44322/garage/add", {
+    fetch("https://localhost:5001/api/garage/add", {
       method: "POST",
       mode: "cors",
       cache: "no-cache",
       credentials: "same-origin",
+      Authentication: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6ImJiZjViNmQyLTRmNzQtNGE2OS04MDVmLTk4MTdiOTI2ZWYxMyIsImVtYWlsIjoidGVzdEBnbWFpbC5jb20iLCJzdWIiOiJ0ZXN0QGdtYWlsLmNvbSIsImp0aSI6ImFjY2E3ODllLTJmZjctNGE3NS1hMThhLWUzYzE3OWRhNWY1NiIsIm5iZiI6MTYyNzgyMDc1OCwiZXhwIjoxNjI3ODQyMzU4LCJpYXQiOjE2Mjc4MjA3NTh9.w1FWS5KVkfAiwSloVhHXfT2JHF_5d53F12meZtydVOU",
       headers: {
         "Content-Type": "application/json",
       },

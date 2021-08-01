@@ -8,7 +8,15 @@ class GarageList extends Component {
   }
 
   componentDidMount() {
-    fetch("https://localhost:44322/garage/all")
+    fetch("https://localhost:5001/api/garage/all", {
+      cache: "no-cache",
+      mode:"cors",
+      credentials: "same-origin",
+      headers: {
+        Authentication: 
+          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6ImJiZjViNmQyLTRmNzQtNGE2OS04MDVmLTk4MTdiOTI2ZWYxMyIsImVtYWlsIjoidGVzdEBnbWFpbC5jb20iLCJzdWIiOiJ0ZXN0QGdtYWlsLmNvbSIsImp0aSI6ImFjY2E3ODllLTJmZjctNGE3NS1hMThhLWUzYzE3OWRhNWY1NiIsIm5iZiI6MTYyNzgyMDc1OCwiZXhwIjoxNjI3ODQyMzU4LCJpYXQiOjE2Mjc4MjA3NTh9.w1FWS5KVkfAiwSloVhHXfT2JHF_5d53F12meZtydVOU",
+      },
+    })
       .then((response) => response.json())
       .then((res) => {
         console.log(res);

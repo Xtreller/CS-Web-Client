@@ -1,21 +1,39 @@
-
+const _url = "https://localhost:5001/api/user/";
+// https://localhost:5001/api/user/register
 export class AuthService {
 
     register(input) {
         console.log(input)
-        fetch("https://localhost:5001/Identity/Account/Register", {
-            method: "POST",
-            mode: "cors",
-            credentials: "same-origin",
-            type:"formData",
-            body: JSON.stringify(input)
-        })
+        fetch(_url+ "register",
+            {
+                method: "POST",
+                mode: "cors",
+                credentials: "same-origin",
+                headers: {
+                    "Content-Type": "application/json",
+                  },
+                body: JSON.stringify(input)
+            })
             .then(data => data.json())
             .then((res) => console.log(res))
             .catch()
     }
-    login(username, password) {
-
+    login(input) {
+        fetch(_url+ "login",
+        {
+            method: "POST",
+            mode: "cors",
+            credentials: "same-origin",
+            headers: {
+                "Content-Type": "application/json",
+              },
+            body: JSON.stringify(input)
+        })
+        .then(data => data.json())
+        .then((res) =>{
+            console.log(res);
+        })
+        .catch()
     }
     logout(token) {
 

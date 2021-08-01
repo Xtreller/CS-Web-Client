@@ -8,7 +8,7 @@ export default function Details(props) {
   console.log(id);
   useEffect(() => {
     console.log("kurva");
-    fetch(`https://localhost:44322/garage/${id}`)
+    fetch(`https://localhost:5001/api/garage/${id}`)
       .then((data) => data.json())
       .then((result) => setGarage(result))
       .catch();
