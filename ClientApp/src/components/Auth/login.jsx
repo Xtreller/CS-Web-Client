@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import auth from "./authService";
 
-export default function Login() {
+export default function Login(props) {
   let [input, setInput] = useState({});
   let [message, setMessage] = useState("");
   function handleInputChange(event) {
     const key = event.target.name;
-    console.log(key);
     const value = event.target.value;
 
     Object.assign(input, { [key]: value });
@@ -16,10 +15,9 @@ export default function Login() {
     event.preventDefault();
     if (!input.Password || !input.Email) {
       setMessage("All fields are required");
-      console.log(message);
     }
-    console.log(input);
     auth.login(input);
+    props.isLogged();
   }
   return (
     <form onSubmit={handleSubmit}>

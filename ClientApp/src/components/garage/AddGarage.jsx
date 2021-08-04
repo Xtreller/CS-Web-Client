@@ -18,29 +18,27 @@ export default class AddGarage extends Component {
   }
   handleSubmit(event) {
     event.preventDefault();
-    fetch("https://localhost:5001/api/garage/add", {
-      method: "POST",
-      mode: "cors",
-      cache: "no-cache",
-      credentials: "same-origin",
-      Authentication: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6ImJiZjViNmQyLTRmNzQtNGE2OS04MDVmLTk4MTdiOTI2ZWYxMyIsImVtYWlsIjoidGVzdEBnbWFpbC5jb20iLCJzdWIiOiJ0ZXN0QGdtYWlsLmNvbSIsImp0aSI6ImFjY2E3ODllLTJmZjctNGE3NS1hMThhLWUzYzE3OWRhNWY1NiIsIm5iZiI6MTYyNzgyMDc1OCwiZXhwIjoxNjI3ODQyMzU4LCJpYXQiOjE2Mjc4MjA3NTh9.w1FWS5KVkfAiwSloVhHXfT2JHF_5d53F12meZtydVOU",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(this.state),
-    })
-      .then((res) => console.log(res))
-      .catch((err) => console.log());
+    let isAuth = localStorage.getItem("auth_token");
+  
+    if (isAuth) {
+      this.setState({user_id:localStorage.getItem('user_id')})
+      console.log(this.state);
+      fetch("https://localhost:5001/api/garage/add", {
+        method: "POST",
+        mode: "cors",
+        cache: "no-cache",
+        credentials: "same-origin",
+        headers: {
+          Authorization: "Bearer " + isAuth,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(this.state),
+      })
+      .then(data => data.json())
+        .then((res) => console.log(res))
+        .catch((err) => console.log());
+    }
   }
-  //   public int Id { get; set; }
-  //   [Required]
-  //   public string Name { get; set; }
-  //   public double Rating { get; set; }
-  //   public int Done_Jobs { get; set; }
-  //   public string Town { get; set; }
-  //   public string Address { get; set; }
-  //   public ICollection<WorkingDays> WorkingDays{ get; set; }
-  //   public virtual ICollection<Job> Jobs { get; set; }
   render() {
     return (
       <div>

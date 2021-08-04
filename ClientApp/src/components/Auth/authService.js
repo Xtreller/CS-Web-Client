@@ -31,7 +31,12 @@ export class AuthService {
         })
         .then(data => data.json())
         .then((res) =>{
-            console.log(res);
+            if(res.success){
+                console.log(res.user.id);
+                localStorage.setItem('user_id',res.user.id);
+                localStorage.setItem('email',res.user.email);
+                localStorage.setItem('auth_token',res.data);
+            }
         })
         .catch()
     }

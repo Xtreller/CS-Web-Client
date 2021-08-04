@@ -3,6 +3,7 @@ import { NavItem, NavLink } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import authService from './AuthorizeService';
 import { ApplicationPaths } from './ApiAuthorizationConstants';
+import Nav from 'reactstrap/lib/Nav';
 
 export class LoginMenu extends Component {
     constructor(props) {
@@ -33,7 +34,9 @@ export class LoginMenu extends Component {
 
     render() {
         const { isAuthenticated, userName } = this.state;
-        if (!isAuthenticated) {
+        const isAuth = localStorage.getItem('auth_token');
+
+        if (!isAuth) {
             const registerPath = `${ApplicationPaths.Register}`;
             const loginPath = `${ApplicationPaths.Login}`;
             return this.anonymousView(registerPath, loginPath);
@@ -45,25 +48,35 @@ export class LoginMenu extends Component {
     }
 
     authenticatedView(userName, profilePath, logoutPath) {
+        const isAuth = localStorage.getItem('auth_token');
+
         return (<Fragment>
-            <NavItem>
-                <NavLink tag={Link} to={profilePath}>Hello {userName}</NavLink>
-            </NavItem>
-            <NavItem>
-                <NavLink tag={Link} to={logoutPath}>Logout</NavLink>
-            </NavItem>
+           <NavItem>
+                     <NavLink tag={Link}>Hello {isAuth.slice(0,5)}</NavLink>
+                </NavItem>
+                <NavItem>
+                {/* {userEmail && <li className="active"><NavLink to="#" onClick={() => this.logout()}>Logout</NavLink></li>} */}
+                     <NavLink to="#" onClick={() => this.logout()}>Logout</NavLink>
+                </NavItem>
         </Fragment>);
 
     }
-
+    logout(){
+        console.log('her');
+        if(localStorage.getItem('auth_token')){
+            localStorage.clear();
+        }
+    }
     anonymousView(registerPath, loginPath) {
-        return (<Fragment>
-            <NavItem>
-                <NavLink tag={Link} to="/register">Register</NavLink>
-            </NavItem>
-            <NavItem>
-                <NavLink tag={Link} to="/login">Login</NavLink>
-            </NavItem>
-        </Fragment>);
+        const isAuth = localStorage.getItem('auth_token');
+        return (
+            <Fragment>
+              <NavItem>
+                    {!isAuth && <NavLink tag={Link} to="/register">Register</NavLink>}
+                </NavItem>
+                <NavItem>
+                    {!isAuth && <NavLink tag={Link} to="/login">Login</NavLink>}
+                </NavItem>
+            </Fragment>);
     }
 }

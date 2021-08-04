@@ -5,9 +5,8 @@ export default function Details(props) {
   const [garage, setGarage] = useState({});
   console.log(props.location);
   let { id } = useParams();
-  console.log(id);
   useEffect(() => {
-    console.log("kurva");
+    console.log(localStorage.getItem("auth_token"));
     fetch(`https://localhost:5001/api/garage/${id}`)
       .then((data) => data.json())
       .then((result) => setGarage(result))
