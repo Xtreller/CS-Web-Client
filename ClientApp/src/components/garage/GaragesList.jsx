@@ -49,12 +49,20 @@ class GarageList extends Component {
                 </div>
 
                 <Link
-                  className="btn btn-primary"
+                  className="btn btn-primary mr-4"
                   to={{
                     pathname: "/garage/" + garage.id,
                   }}
                 >
                   Details
+                </Link>
+                <Link
+                  className="btn btn-primary"
+                  to={{
+                    pathname: "/jobs/" + garage.id,
+                  }}
+                >
+                  Jobs
                 </Link>
               </div>
             </div>

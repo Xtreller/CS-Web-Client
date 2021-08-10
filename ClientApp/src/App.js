@@ -5,6 +5,8 @@ import { Home } from './components/Home';
 import Details from './components/garage/Details';
 import AddGarage from './components/garage/AddGarage';
 import GarageList from './components/garage/GaragesList';
+import Jobs from './components/garage/Jobs';
+import AddJob from './components/garage/AddJob';
 import { Container } from 'reactstrap';
 
 // // import AuthorizeRoute from './components/api-authorization/AuthorizeRoute';
@@ -29,7 +31,7 @@ export default class App extends Component {
     this.isLogged = this.isLogged.bind(this);
   }
   isLogged() {
-    
+
     const token = localStorage.getItem('auth_token');
     if (token) {
 
@@ -39,15 +41,15 @@ export default class App extends Component {
       this.setState({ isLogged: false });
     }
   }
-  componentDidMount(){
+  componentDidMount() {
     this.isLogged();
-    
+
   }
 
   render() {
     return (
       <div>
-        <NavMenu logout={()=>this.isLogged()} isLogged={this.state.isLogged} />
+        <NavMenu logout={() => this.isLogged()} isLogged={this.state.isLogged} />
         <Container>
 
           <Route exact path='/' component={Home} />
@@ -55,8 +57,10 @@ export default class App extends Component {
           <Route path='/add-garage' component={AddGarage} />
           <Route path='/garage/:id' component={Details} />
           <Route path='/register' component={Register} />
+          <Route path='/jobs/:id' component={Jobs} />
+          <Route path='/add-job/:id' component={AddJob} />
           <Route path='/login' render={() => (
-            <Login isLogged={()=>this.isLogged()} />
+            <Login isLogged={() => this.isLogged()} />
           )} />
         </Container>
         {/* <Route path={ApplicationPaths.ApiAuthorizationPrefix} component={ApiAuthorizationRoutes} /> */}
